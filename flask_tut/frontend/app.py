@@ -70,9 +70,16 @@ def todo():
 def submit_todo():
     form_data = dict(request.form)
 
-    response = requests.post(f"{BACKEND_URL}/submittodoitem", json=form_data)
+    response = requests.post(
+        f"{BACKEND_URL}/submittodoitem", 
+        json=form_data)
 
-    return "To-Do Item Submitted"
+    result = response.json()
+
+    if result["status"] == "success":
+        return "To-Do Item Submitted Successfully"
+    else:
+        return f"Error: {result['message']}"
 
 
 if __name__ == '__main__':

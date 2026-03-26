@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+</head>
+
+<body>
+
+    <p>Hi, welcome to the Registration Page</p>
+
+    <p>Today is {{ day_of_week }}</p>
+
+    <p>The Time is {{ current_time }}</p>
+
+    <div class="centred">
+
+        <form action="/submit" method="POST">
+
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" placeholder="Enter your name" required>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password" required>
+
+            <input type="submit" value="Submit">
+
+        </form>
+
+        <br>
+
+        <a href="/get_data">
+            <button>View Data</button>
+        </a>
+
+        <!-- Success  -->
+        {% if success %}
+        <p style="color:green; font-weight:bold;">
+            {{ success }}
+        </p>
+        {% endif %}
+
+        <!-- Error  -->
+        {% if error %}
+        <p style="color:red; font-weight:bold;">
+            {{ error }}
+        </p>
+        {% endif %}
+
+    </div>
+
+</body>
+
+<style>
+
+body{
+    background-color: wheat;
+}
+
+p{
+    text-align:center;
+    font-size:30px;
+    font-family:Arial, Helvetica, sans-serif;
+    color:black;
+}
+
+.centred{
+    margin:auto;
+    width:50%;
+    border:3px solid green;
+    padding:20px;
+}
+
+input{
+    display:block;
+    margin:10px 0;
+    padding:8px;
+}
+
+button{
+    padding:8px 15px;
+}
+
+</style>
+
+</html>

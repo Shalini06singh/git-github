@@ -52,6 +52,30 @@ def view():
     return jsonify({"data": data})
 
 
+@app.route('/submittodoitem', methods=['POST'])
+def submit_todo_item():
+    try:
+        data = request.json
+
+        item = {
+            "itemName": data.get("itemName"),
+            "itemDescription": data.get("itemDescription")
+        }
+
+        collection.insert_one(item)
+
+        return jsonify({
+            "status": "success",
+            "message": "To-Do item stored"
+        })
+
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        })
+
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 9000))
     app.run(host="0.0.0.0", port=port, debug=True)
